@@ -34,12 +34,29 @@ Make the winning button be randomly selected.  Each game should have a randomly 
 
 Add images to the button to make them look like cards.  You  Build the app to look like the example.
 
-### Stage 4: 
-
-Add a label that saves the users score. 
 
 ### Final product
 
 ![](https://media.giphy.com/media/l378eqDtQVUCawcTu/giphy.gif)
 
+### Bonus 1: 
 
+Add a label that saves the users score. 
+
+### Bonus 2:
+
+Add a fourth card
+
+### Bonus 3:
+
+Add a fifth card
+
+### Bonus 4:
+
+Have 3 different new game buttons:
+
+- New 3-card Game
+- New 4 card Game
+- New 5-card Game
+
+That each begin a game of the appropriate type, hiding unused cards as necessary.
