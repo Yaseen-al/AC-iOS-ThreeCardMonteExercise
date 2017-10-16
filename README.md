@@ -27,7 +27,7 @@ Make the winning button be randomly selected.
 
 ### Level 3: 
 
-Add images to the button to make them look like cards. Build the app to look like the 
+Add images to the button to make them look like cards. Build the app to look like the example.
 
 ### Level 4: 
 
