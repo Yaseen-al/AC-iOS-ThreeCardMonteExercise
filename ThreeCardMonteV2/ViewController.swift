@@ -13,17 +13,27 @@ class ViewController: UIViewController {
         case zero = 0
         case one = 1
         case two = 2
+        case three = 3
+        static func getRandomCard() -> WinningCard {
+            let newNum = Int(arc4random_uniform(4))
+            return WinningCard(rawValue: newNum)!
+        }
     }
     
     var winningCardNum: WinningCard? = nil
-
+    var cards: [UIButton] = []
+    
     @IBOutlet weak var cardZero: UIButton!
     @IBOutlet weak var cardOne: UIButton!
     @IBOutlet weak var cardTwo: UIButton!
+    @IBOutlet weak var cardThree: UIButton!
     @IBOutlet weak var displayLabel: UILabel!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        //Set up any of your own things
         setUpGame()
+        self.cards = [cardZero, cardOne, cardTwo, cardThree]
     }
     
     @IBAction func newGameButtonPressed(_ sender: UIButton) {
@@ -31,41 +41,35 @@ class ViewController: UIViewController {
     }
     
     func setUpGame() {
-        pickWinningCard()
+        self.winningCardNum = WinningCard.getRandomCard()
         resetCards()
         displayLabel.text = "Pick a card, any card!"
     }
     
     @IBAction func cardButtonPressed(_ sender: UIButton) {
         setWinningCardImage()
+        
         if sender.tag == winningCardNum?.rawValue {
             displayLabel.text = "You win!"
         } else {
             sender.setImage(#imageLiteral(resourceName: "threeCard"), for: .normal)
-            sender.setBackgroundImage(nil, for: .normal)
             displayLabel.text = "You lose!"
         }
+        
         disableCards()
     }
-    
+    /*
     func pickWinningCard() {
         let newNum = Int(arc4random_uniform(3))
-        print("Trying to set to: \(newNum)")
+        //print("Trying to set to: \(newNum)")
         winningCardNum = WinningCard(rawValue: newNum)
     }
-    
+    */
     func resetCards() {
-        cardZero.setBackgroundImage(#imageLiteral(resourceName: "cardBackRed"), for: .normal)
-        cardZero.setImage(nil, for: .normal)
-        cardZero.isEnabled = true
-
-        cardOne.setBackgroundImage(#imageLiteral(resourceName: "cardBackRed"), for: .normal)
-        cardOne.setImage(nil, for: .normal)
-        cardOne.isEnabled = true
-
-        cardTwo.setBackgroundImage(#imageLiteral(resourceName: "cardBackRed"), for: .normal)
-        cardTwo.setImage(nil, for: .normal)
-        cardTwo.isEnabled = true
+        for card in cards {
+            card.setImage(#imageLiteral(resourceName: "cardBackRed"), for: .normal)
+            card.isEnabled = true
+        }
     }
     
     func setWinningCardImage() {
@@ -75,20 +79,19 @@ class ViewController: UIViewController {
         switch winningCardNum {
         case .zero:
             cardZero.setImage(#imageLiteral(resourceName: "kingCard"), for: .normal)
-            cardZero.setBackgroundImage(nil, for: .normal)
         case .one:
             cardOne.setImage(#imageLiteral(resourceName: "kingCard"), for: .normal)
-            cardOne.setBackgroundImage(nil, for: .normal)
         case .two:
             cardTwo.setImage(#imageLiteral(resourceName: "kingCard"), for: .normal)
-            cardTwo.setBackgroundImage(nil, for: .normal)
+        case .three:
+            cardThree.setImage(#imageLiteral(resourceName: "kingCard"), for: .normal)
         }
     }
     
     func disableCards() {
-        cardZero.isEnabled = false
-        cardOne.isEnabled = false
-        cardTwo.isEnabled = false
+        for card in cards {
+            card.isEnabled = false
+        }
     }
 }
 
